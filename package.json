@@ -1,22 +1,43 @@
 {
-  "name": "websemantique",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "testwind",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "tailwind": "tailwind build ./src/assets/css/tailwind.css -o ./src/assets/css/output.css",
+    "serve": "npm run tailwind && vue-cli-service serve",
+    "build": "npm run tailwind && vue-cli-service build",
+    "lint": "vue-cli-service lint"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/SoPlump/WebSemantique.git"
+  "dependencies": {
+    "core-js": "^3.4.3",
+    "vue": "^2.6.10"
   },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/SoPlump/WebSemantique/issues"
-  },
-  "homepage": "https://github.com/SoPlump/WebSemantique#readme",
   "devDependencies": {
-    "tailwindcss": "^1.1.4"
-  }
+    "@vue/cli-plugin-babel": "^4.1.0",
+    "@vue/cli-plugin-eslint": "^4.1.0",
+    "@vue/cli-service": "^4.1.0",
+    "babel-eslint": "^10.0.3",
+    "eslint": "^5.16.0",
+    "eslint-plugin-vue": "^5.0.0",
+    "tailwindcss": "^1.1.4",
+    "vue-template-compiler": "^2.6.10"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "rules": {},
+    "parserOptions": {
+      "parser": "babel-eslint"
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ]
 }
