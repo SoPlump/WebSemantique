@@ -1,9 +1,29 @@
 import Vue from 'vue'
 import App from './App.vue'
 import "@/assets/css/output.css"
+import VueRouter from 'vue-router'
+import Welcome from "./components/Welcome";
+import ResultsHolder from "./components/ResultsPage";
+import Pagenotfound from "./components/Pagenotfound";
+import Searchpage from "./components/Searchpage";
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
+
+Vue.use(VueRouter);
+
+const router = new VueRouter({
+  routes: [
+    {path : '/', component: Searchpage},
+    {path : '/search', component: ResultsHolder},
+    {path : '/home', component: Welcome},
+    {path: '*', component: Pagenotfound}
+  ],
+  mode: 'history'
+});
+
+export default router;
 
 new Vue({
+  router,
   render: h => h(App),
-}).$mount('#app')
+}).$mount('#app');
