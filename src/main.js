@@ -11,7 +11,7 @@ Vue.config.productionTip = false;
 
 Vue.use(VueRouter);
 
-const router = new VueRouter({
+export const router = new VueRouter({
   routes: [
     {path : '/', component: Searchpage},
     {path : '/search', component: ResultsPage},
@@ -20,8 +20,6 @@ const router = new VueRouter({
   ],
   mode: 'history'
 });
-
-export default router;
 
 new Vue({
   router,
