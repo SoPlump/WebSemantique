@@ -3,7 +3,7 @@ import App from './App.vue'
 import "@/assets/css/output.css"
 import VueRouter from 'vue-router'
 import Welcome from "./components/Welcome";
-import ResultsHolder from "./components/ResultsPage";
+import ResultsPage from "./components/ResultsPage";
 import Pagenotfound from "./components/Pagenotfound";
 import Searchpage from "./components/Searchpage";
 
@@ -14,7 +14,7 @@ Vue.use(VueRouter);
 const router = new VueRouter({
   routes: [
     {path : '/', component: Searchpage},
-    {path : '/search', component: ResultsHolder},
+    {path : '/search', component: ResultsPage},
     {path : '/home', component: Welcome},
     {path: '*', component: Pagenotfound}
   ],
