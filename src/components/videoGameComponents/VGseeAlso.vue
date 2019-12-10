@@ -1,6 +1,7 @@
 <template>
     <div>
-        COUCOUUUUUUUUUUUUUUUUUUUUUU
+        <div id = "sameGenre">Games of the same genre : </div>
+        <div id = "sameSerie">Games of the same serie : </div>
     </div>
 </template>
 
