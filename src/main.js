@@ -7,6 +7,7 @@ import ResultsPage from "./components/ResultsPage";
 import Pagenotfound from "./components/Pagenotfound";
 import Searchpage from "./components/Searchpage";
 import VideoGameView from "./components/VideoGameView";
+import SparqlHttp from "./SparqlHttp";
 
 Vue.config.productionTip = false;
 
@@ -21,6 +22,10 @@ export const router = new VueRouter({
     {path: '*', component: Pagenotfound}
   ],
   mode: 'history'
+});
+
+export const sparql = new SparqlHttp("http://dbpedia.org/sparql", {
+  format: "json"
 });
 
 new Vue({
