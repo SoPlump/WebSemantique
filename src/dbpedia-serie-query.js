@@ -106,4 +106,32 @@ export const getSerieByName = (name) => {
         })
 };
 
+export const getAllSeriesByName = (name) => {
+    return sparql.query(`
+        select distinct ?uri ?name ?abstract
+        WHERE {
+            ?game a dbo:VideoGame;
+            dbo:series ?uri.
+            ?uri rdfs:label ?name.
+            FILTER(LangMatches(lang(?name), "en"))
+            FILTER contains(lcase(?name), lcase("${name}"))
+        }
+        `)
+        .then(res => {
+            let series = res.results.bindings;
+            return new Promise(resolve => {
+                series = series.map(serie => {
+                    return {
+                        name: serie.name.value,
+                        uri: serie.uri.value
+                    };
+                });
+                resolve(series);
+            });
+        })
+        .catch(error => {
+            /*eslint-disable no-console*/
+            console.error(error);
+        });
+};
 
