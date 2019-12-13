@@ -19,7 +19,7 @@ export const getGenreByName = name => {
                 return new Promise(resolve => resolve({
                     abstract: genre.abstract.value,
                     name: genre.name.value,
-                    res: genre.res.value
+                    uri: genre.res.value
                 }));
             }
             return null;
@@ -32,7 +32,7 @@ export const getGenreByName = name => {
                         ?res a dbo:VideoGame;
                         dbo:genre ?genre;
                         rdfs:label ?name.
-                        FILTER(?genre = <${genre.res}>)
+                        FILTER(?genre = <${genre.uri}>)
                         FILTER(LangMatches(lang(?name), "en"))
                     } LIMIT 10
                     `)
@@ -43,7 +43,7 @@ export const getGenreByName = name => {
                             games: games.map(game => {
                                 return {
                                     name: game.name.value,
-                                    res: game.res.value
+                                    uri: game.res.value
                                 }
                             })
                         }));
