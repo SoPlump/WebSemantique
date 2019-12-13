@@ -7,12 +7,17 @@
 
 <script>
 import NavBar from "./components/NavBar";
+import {getAllSeriesByName} from "./dbpedia-serie-query";
 
 export default {
   name: 'app',
   components: {
     NavBar,
-  }
+  },
+  mounted:() =>
+    /*eslint-disable*/
+    getAllSeriesByName("final fa").then(res => console.log(res))
+
 }
 </script>
 
