@@ -17,6 +17,7 @@ export const getGameByName = (name) => {
         .then(res => {
             const game = res.results.bindings[0];
 
+            // todo : verifier que les valeurs ne sont pas nulles
             return new Promise(resolve => resolve({
                 res: game.res.value,
                 name: game.name.value,
