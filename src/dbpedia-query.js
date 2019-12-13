@@ -3,14 +3,14 @@ import {sparql} from "./main";
 export const getGenreByName = name => {
     return sparql
         .query(`
-            select ?res ?name ?abstract
+            select ?uri ?name ?abstract
             WHERE {
-                ?res a yago:WikicatVideoGameGenres;
+                ?uri a yago:WikicatVideoGameGenres;
                 rdfs:label ?name;
                 dbo:abstract ?abstract.
                 FILTER(LangMatches(lang(?name), "en"))
                 FILTER(LangMatches(lang(?abstract), "en"))
-                FILTER (?res = <http://dbpedia.org/resource/${name}>)
+                FILTER (?uri = <http://dbpedia.org/resource/${name}>)
             }
         `)
         .then(res => {
@@ -19,7 +19,7 @@ export const getGenreByName = name => {
                 return new Promise(resolve => resolve({
                     abstract: genre.abstract.value,
                     name: genre.name.value,
-                    uri: genre.res.value
+                    uri: genre.uri.value
                 }));
             }
             return null;
@@ -28,8 +28,8 @@ export const getGenreByName = name => {
             if(genre) {
                 return sparql
                     .query(`
-                    SELECT ?res ?name WHERE {
-                        ?res a dbo:VideoGame;
+                    SELECT ?uri ?name WHERE {
+                        ?uri a dbo:VideoGame;
                         dbo:genre ?genre;
                         rdfs:label ?name.
                         FILTER(?genre = <${genre.uri}>)
@@ -43,7 +43,7 @@ export const getGenreByName = name => {
                             games: games.map(game => {
                                 return {
                                     name: game.name.value,
-                                    uri: game.res.value
+                                    uri: game.uri.value
                                 }
                             })
                         }));
@@ -60,9 +60,9 @@ export const getGenreByName = name => {
 export const getAllGenresByName = name => {
     return sparql
         .query(`
-            select ?res ?name ?abstract
+            select ?uri ?name ?abstract
             WHERE {
-                ?res a yago:WikicatVideoGameGenres;
+                ?uri a yago:WikicatVideoGameGenres;
                 rdfs:label ?name.
                 FILTER(LangMatches(lang(?name), "en"))
                 FILTER contains(lcase(?name), lcase("${name}"))
@@ -74,7 +74,7 @@ export const getAllGenresByName = name => {
                 genres = genres.map(genre => {
                     return {
                         name: genre.name.value,
-                        res: genre.res.value
+                        uri: genre.uri.value
                     };
                 });
                 resolve(genres);
@@ -89,11 +89,11 @@ export const getAllGenresByName = name => {
 export const getStudioByName = name => {
     return sparql
         .query(`
-            SELECT ?res ?name ?abstract WHERE {
-                ?res a ?type;
+            SELECT ?uri ?name ?abstract WHERE {
+                ?uri a ?type;
                 dbo:abstract ?abstract;
                 foaf:name ?name.
-                FILTER (?res = <http://dbpedia.org/resource/${name}>)
+                FILTER (?uri = <http://dbpedia.org/resource/${name}>)
                 FILTER(LangMatches(lang(?abstract), "en"))
                 FILTER(LangMatches(lang(?name), "en"))
                 FILTER(?type = yago:WikicatVideoGamePublishers || ?type = yago:WikicatVideoGameDevelopmentCompanies)
@@ -105,7 +105,7 @@ export const getStudioByName = name => {
                 return new Promise(resolve => resolve({
                     name: studio.name.value,
                     abstract: studio.abstract.value,
-                    uri: studio.res.value
+                    uri: studio.uri.value
                 }));
             }
             return null;
@@ -114,8 +114,8 @@ export const getStudioByName = name => {
             if(studio) {
                 return sparql
                     .query(`
-                    SELECT ?res ?name WHERE {
-                        ?res a dbo:VideoGame;
+                    SELECT ?uri ?name WHERE {
+                        ?uri a dbo:VideoGame;
                         dbo:genre ?genre;
                         rdfs:label ?name;
                         dbo:developer ?developer.
@@ -130,7 +130,7 @@ export const getStudioByName = name => {
                             developedGames: games.map(game => {
                                 return {
                                     name: game.name.value,
-                                    uri: game.res.value
+                                    uri: game.uri.value
                                 }
                             })
                         }));
@@ -142,8 +142,8 @@ export const getStudioByName = name => {
             if(studio) {
                 return sparql
                     .query(`
-                    SELECT ?res ?name WHERE {
-                        ?res a dbo:VideoGame;
+                    SELECT ?uri ?name WHERE {
+                        ?uri a dbo:VideoGame;
                         dbo:genre ?genre;
                         rdfs:label ?name;
                         dbo:publisher ?publisher.
@@ -158,7 +158,7 @@ export const getStudioByName = name => {
                             publishedGames: games.map(game => {
                                 return {
                                     name: game.name.value,
-                                    uri: game.res.value
+                                    uri: game.uri.value
                                 }
                             })
                         }));
@@ -175,8 +175,8 @@ export const getStudioByName = name => {
 export const getAllStudiosByName = name => {
     return sparql
         .query(`
-            SELECT ?res ?name WHERE {
-                ?res a ?type;
+            SELECT ?uri ?name WHERE {
+                ?uri a ?type;
                 foaf:name ?name.
                 FILTER contains(lcase(?name), lcase("${name}"))
                 FILTER(LangMatches(lang(?name), "en"))
@@ -189,7 +189,7 @@ export const getAllStudiosByName = name => {
                 studios = studios.map(studio => {
                     return {
                         name: studio.name.value,
-                        res: studio.res.value
+                        uri: studio.uri.value
                     };
                 });
                 resolve(studios);
