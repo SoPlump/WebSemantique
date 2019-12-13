@@ -242,8 +242,8 @@ export const getSerieByName = (name) => {
                     let usableGames = [];
                     games.forEach(game => {
                         usableGames.push({
-                            gameName: game.gameName.value,
-                            game: game.game.value
+                            name: game.gameName.value,
+                            uri: game.game.value
                         })
                     });
                     return new Promise(resolve => resolve({

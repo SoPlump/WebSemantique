@@ -19,6 +19,7 @@
 <script>
     import {getGenreByName} from "../dbpedia-query";
     import GameList from "./common/gameList";
+
     export default {
         name: "GenreView",
         components: {GameList},

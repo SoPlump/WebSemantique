@@ -6,10 +6,10 @@
 </template>
 
 <script>
-import NavBar from "./components/NavBar";
-import {getSerieByName} from "./dbpedia-serie-query";
+  import NavBar from "./components/NavBar";
+  import {getSerieByName} from "./dbpedia-query";
 
-export default {
+  export default {
   name: 'app',
   components: {
     NavBar,
