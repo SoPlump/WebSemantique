@@ -1,6 +1,7 @@
 <template>
     <div>
-        Game : {{gameName}}
+
+        <div class="bg-blue-300 text-center text-3xl">{{gameName}}</div>
 
         <div>
             <button v-on:click=test>Bouton pour tester la fonction de requête !</button>
