@@ -1,6 +1,6 @@
 <template>
     <ul>
-        <li v-for="serie in series">
+        <li v-for="serie in series" :key="serie.id">
             {{ serie }}
         </li>
     </ul>

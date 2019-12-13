@@ -1,6 +1,6 @@
 <template>
     <ul>
-        <li v-for="game in games">
+        <li v-for="game in games" :key="game.id">
             {{ game }}
         </li>
     </ul>
