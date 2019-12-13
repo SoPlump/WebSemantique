@@ -4,30 +4,42 @@
             Genre : {{genreName}}
         </div>
         <div>
-            Abstract
+            Abstract : {{abstract}}
         </div>
 
-        <span>Serie List</span>
-        <serie-list>
+        <span>Game List</span>
+        <game-list v-bind:games=games>
 
-        </serie-list>
+        </game-list>
 
 
     </div>
 </template>
 
 <script>
-    import SerieList from "./common/serieList";
+    import {getGenreByName} from "../dbpedia-query";
+    import GameList from "./common/gameList";
     export default {
         name: "GenreView",
-        components: {SerieList},
+        components: {GameList},
         data: function () {
             return {
                 genreName: String,
+                abstract: String,
+                games : Array,
+
             }
         },
         created() {
             this.genreName = this.$route.params.genreName;
+            getGenreByName(this.genreName).then(genre => {
+                this.abstract = genre.abstract;
+                this.games = genre.games;
+                /*eslint-disable*/
+                console.log(genre);
+            })
+
+
         },
     }
 </script>

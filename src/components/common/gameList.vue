@@ -1,7 +1,7 @@
 <template>
     <ul>
-        <li v-for="game in games" :key="game.id">
-            {{ game }}
+        <li v-for="game in games" :key="game.name">
+            {{ game.name }}
         </li>
     </ul>
 </template>
