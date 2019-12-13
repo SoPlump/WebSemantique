@@ -36,7 +36,7 @@
 </template>
 
 <script>
-    import {getSerieByName} from "../dbpedia-serie-query";
+    import {getSerieByName} from "../dbpedia-query";
     import GenreList from "./common/genreList";
     import PublisherList from "./common/publisherList";
     import GameList from "./common/gameListe";
