@@ -10,15 +10,15 @@
 
         </div>
 
-        <FactSheet>
+        <FactSheet name="ADD NAME" date="ADD DATE" genre= "ADD GENRE" serie="ADD SERIE" abstract="ADD ABSTRACT">
 
         </FactSheet>
 
-        <Team id = "team">
+        <Team id = "team" dev = "ADD DEV" director="ADD DIRECTOR" producer="PRODUCER" game-artist="ADD GAME ARTIST">
 
         </Team>
 
-        <Feedback>
+        <Feedback award="ADD AWARD" ign="ADD IGN" gs="ADD GS" mc="ADD MC">
 
         </Feedback>
 
