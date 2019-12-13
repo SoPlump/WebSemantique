@@ -6,6 +6,7 @@
 
 <script>
     import {router} from "../main.js"
+
     export default {
         name: "Searchpage",
         data () {

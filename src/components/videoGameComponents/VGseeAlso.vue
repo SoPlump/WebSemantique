@@ -14,6 +14,7 @@
 
 <script>
     import GameList from "../common/gameListe";
+
     export default {
         name: "VGseeAlso",
         components: {GameList}

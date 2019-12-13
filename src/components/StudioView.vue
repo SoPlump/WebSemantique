@@ -20,6 +20,7 @@
 
 <script>
     import GameList from "./common/gameList";
+
     export default {
         name: "StudioView",
         components: {GameList},

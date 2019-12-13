@@ -23,6 +23,7 @@
 
 <script>
     import GameList from "./common/gameList";
+
     export default {
         name: "SerieView",
         components: {GameList},
