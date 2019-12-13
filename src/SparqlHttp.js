@@ -15,7 +15,7 @@ export default class SparqlHttp {
             format: this.options.format
         };
         return new Promise((resolve, reject) => {
-            $.ajax(this.url,  {
+            $.ajax(this.url, {
                 success: resolve,
                 error: reject,
                 data
