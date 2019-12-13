@@ -6,12 +6,13 @@ import Welcome from "./components/Welcome";
 import ResultsPage from "./components/ResultsPage";
 import Pagenotfound from "./components/Pagenotfound";
 import Searchpage from "./components/Searchpage";
+import SparqlHttp from "./SparqlHttp";
 
 Vue.config.productionTip = false;
 
 Vue.use(VueRouter);
 
-const router = new VueRouter({
+export const router = new VueRouter({
   routes: [
     {path : '/', component: Searchpage},
     {path : '/search', component: ResultsPage},
@@ -21,7 +22,9 @@ const router = new VueRouter({
   mode: 'history'
 });
 
-export default router;
+export const sparql = new SparqlHttp("http://dbpedia.org/sparql", {
+  format: "json"
+});
 
 new Vue({
   router,
