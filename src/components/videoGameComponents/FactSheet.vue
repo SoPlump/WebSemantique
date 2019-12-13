@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div id = 'name'> Name : </div>
+        <div id = 'name' class="border-solid border-black"> Name : </div>
         <div id = 'date'> Release date : </div>
         <div id = 'genre'> Genre : </div>
         <div id = 'serie'> Serie : </div>
