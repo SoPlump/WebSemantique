@@ -1,9 +1,9 @@
 <template>
     <div>
-        {{gameName}}
+        Game : {{gameName}}
 
         <div>
-            <button v-on:click=test>Bouton !</button>
+            <button v-on:click=test>Bouton pour tester la fonction de requête !</button>
         </div>
 
         <div id="result">
