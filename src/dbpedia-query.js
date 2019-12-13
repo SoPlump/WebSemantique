@@ -1,6 +1,6 @@
 import {sparql} from "./main";
 
-export const findGenreByName = (name) => {
+export const getGenreByName = (name) => {
     return sparql.query(`
         select ?res ?name ?abstract
         WHERE {
@@ -53,7 +53,7 @@ export const findGenreByName = (name) => {
         });
 };
 
-export const findAllGenresByName = (name) => {
+export const getAllGenresByName = (name) => {
     return sparql.query(`
         select ?res ?name ?abstract
         WHERE {
