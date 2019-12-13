@@ -1,16 +1,23 @@
 <template>
     <div>
-        <div id = 'name' class="border-solid border-black"> Name : </div>
-        <div id = 'date'> Release date : </div>
-        <div id = 'genre'> Genre : </div>
-        <div id = 'serie'> Serie : </div>
-        <div id = 'abstract'> Abstract : </div>
+        <div id = 'name'> Name : {{name}}</div>
+        <div id = 'date'> Release date : {{date}} </div>
+        <div id = 'genre'> Genre : {{genre}} </div>
+        <div id = 'serie'> Serie :{{serie}} </div>
+        <div id = 'abstract'> Abstract :  {{abstract}}</div>
     </div>
 </template>
 
 <script>
     export default {
-        name: "FactSheet"
+        name: "FactSheet",
+        props: {
+            name: String,
+            date: String,
+            genre: String,
+            serie: String,
+            abstract: String
+        }
     }
 </script>
 
