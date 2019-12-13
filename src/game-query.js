@@ -50,6 +50,35 @@ export const getGameByName = (name) => {
                 })
         })
         .then(game => {
-            
+
         })
 }
+
+export const getAllGamesByName = name => {
+    return sparql
+        .query(`
+            select distinct ?res ?name ?abstract
+            WHERE {
+                ?res a dbo:VideoGame;
+                rdfs:label ?name.
+                FILTER(LangMatches(lang(?name), "en"))
+                FILTER contains(lcase(?name), lcase("${name}"))
+            }
+        `)
+        .then(res => {
+            let games = res.results.bindings;
+            return new Promise(resolve => {
+                games = games.map(game => {
+                    return {
+                        name: game.name.value,
+                        res: game.res.value
+                    };
+                });
+                resolve(games);
+            });
+        })
+        .catch(error => {
+            /*eslint-disable no-console*/
+            console.error(error);
+        });
+};
