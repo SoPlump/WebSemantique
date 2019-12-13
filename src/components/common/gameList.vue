@@ -1,14 +1,17 @@
 <template>
-    <div>
-        <div>
-            
-        </div>
-    </div>
+    <ul>
+        <li v-for="game in games">
+            {{ game }}
+        </li>
+    </ul>
 </template>
 
 <script>
     export default {
-        name: "gameList"
+        name: "gameList",
+        props: {
+            games: Array,
+        }
     }
 </script>
 
