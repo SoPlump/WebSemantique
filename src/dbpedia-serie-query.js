@@ -80,23 +80,26 @@ export const getSerieByName = (name) => {
         .then(serie => {
             return sparql
                 .query(`
-                    SELECT ?publisher
+                    SELECT ?developer, ?developerName
                     WHERE {
-                    dbr:${serie.serie} dbp:publisher ?publisher.
+                    dbr:${serie.serie} dbp:developer ?developer.
+                    ?developer rdfs:label ?developerName
+                    FILTER (lang(?developerName) = 'en')
                     }
                 `)
                 .then(res => {
 
-                    const publishers = res.results.bindings;
-                    let usablePublishers = [];
-                    publishers.forEach(publisher => {
-                        usablePublishers.push({
-                            publisher:publisher.publisher.value
+                    const developers = res.results.bindings;
+                    let usableDevelopers = [];
+                    developers.forEach(developer => {
+                        usableDevelopers.push({
+                            developer:developer.developer.value,
+                            developerName:developer.developerName.value
                         })
                     });
                     return new Promise(resolve => resolve({
                         ...serie,
-                        publishers: usablePublishers
+                        developers: usableDevelopers
                     }));
                 })
         })
