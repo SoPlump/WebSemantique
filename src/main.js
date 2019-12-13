@@ -9,6 +9,7 @@ import Searchpage from "./components/Searchpage";
 import VideoGameView from "./components/VideoGameView";
 import SparqlHttp from "./SparqlHttp";
 import SerieView from "./components/SerieView";
+import GenreView from "./components/GenreView";
 
 Vue.config.productionTip = false;
 
@@ -21,6 +22,7 @@ export const router = new VueRouter({
     {path : '/home', component: Welcome},
     {path : '/game/:gameName',component:VideoGameView},
     {path : '/series/:serieName',component:SerieView},
+    {path : '/genre/:genreName',component:GenreView},
     {path: '*', component: Pagenotfound}
   ],
   mode: 'history'
