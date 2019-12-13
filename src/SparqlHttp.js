@@ -10,7 +10,7 @@ export default class SparqlHttp {
     }
 
     query(query) {
-        let data = {
+        const data = {
             query,
             format: this.options.format
         };
