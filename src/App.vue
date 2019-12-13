@@ -7,12 +7,16 @@
 
 <script>
 import NavBar from "./components/NavBar";
+import {getAllGamesByName} from "./game-query";
 
 export default {
   name: 'app',
   components: {
     NavBar,
-  }
+  },
+  mounted:() =>
+          /*eslint-disable*/
+          getAllGamesByName("final fa").then(res => console.log(res))
 }
 </script>
 
