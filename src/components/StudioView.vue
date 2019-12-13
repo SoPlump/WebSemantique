@@ -1,22 +1,19 @@
 <template>
     <div>
+        <div>
+            Studio : {{studioName}}
+        </div>
 
-        <div>serie : {{serieName}}</div>
-        <div>
-            genre :
-        </div>
-        <div>
-            editor :
-        </div>
-        <div>
-            date 1er jeu :
-        </div>
-        <div>
-            Abstract :
-        </div>
+        <span>Publisher of</span>
         <game-list>
 
         </game-list>
+
+        <span>Developer of</span>
+        <game-list>
+
+        </game-list>
+
 
     </div>
 </template>
@@ -24,16 +21,17 @@
 <script>
     import GameList from "./common/gameList";
     export default {
-        name: "SerieView",
+        name: "StudioView",
         components: {GameList},
         data: function () {
             return {
-                serieName: String,
+                studioName: String,
             }
         },
         created() {
-            this.serieName = this.$route.params.serieName;
-        }
+            this.studioName = this.$route.params.studioName;
+        },
+
     }
 </script>
 

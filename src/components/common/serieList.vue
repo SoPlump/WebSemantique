@@ -1,16 +1,16 @@
 <template>
     <ul>
-        <li v-for="game in games">
-            {{ game }}
+        <li v-for="serie in series">
+            {{ serie }}
         </li>
     </ul>
 </template>
 
 <script>
     export default {
-        name: "gameList",
+        name: "serieList",
         props: {
-            games: Array,
+            series: Array,
         }
     }
 </script>
