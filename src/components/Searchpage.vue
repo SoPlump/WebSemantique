@@ -5,7 +5,7 @@
 </template>
 
 <script>
-    import router from "../main.js"
+    import {router} from "../main.js"
     export default {
         name: "Searchpage",
         data () {
