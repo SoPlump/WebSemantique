@@ -1,50 +1,46 @@
 <template>
     <div class="w-100 flex justify-center mt-5">
         <div class="w-4/5 border-1 flex flex-col">
-            <div class="w-100 border-2 border-black rounded-lg align-middle flex my-2 p-2 hover:shadow-2xl cursor-pointer" v-for="result_object in results" :key="result_object.id">
-                <div class="h-full mx-2 w-1/6 flex justify-center align-middle">
-                    <img :src="result_object.image" alt="">
-                </div>
-                <div class="mx-2 flex flex-col">
-                    <div class="text-2xl font-extrabold">{{result_object.name}}</div>
-                    <div class="text-left">{{result_object.year}}</div>
-                </div>
-            </div>
+            <ResultComponent v-bind:results-all="allGenres" title="Genre"></ResultComponent>
+            <ResultComponent v-bind:results-all="allStudios" title="Studios"></ResultComponent>
+            <ResultComponent v-bind:results-all="allSeries" title="Series"></ResultComponent>
         </div>
     </div>
 </template>
 
 <script>
+    import ResultComponent from "./ResultComponent";
+    import {getAllGenresByName} from "../dbpedia-query"
+    import {getAllStudiosByName} from "../dbpedia-query"
+    import {getAllSeriesByName} from "../dbpedia-query"
 
     export default {
         name: "ResultsPage",
+        components: {ResultComponent},
+        props: {searchTerms: String},
         data: function() {
             return {
-                searchTerms:String,
-                results
+                allGenres:[],
+                allStudios:[],
+                allSeries:[]
             }
         },
-        created() {
-            this.searchTerms = this.$route.query.searchTerms;
-        },
-    }
+        methods: {
+            search: function() {
+                getAllGenresByName(this.searchTerms).then(genre => {
+                    this.allGenres = genre;
+                });
 
-    const results = [
-        {
-            id: 1,
-            name:"Horizon: zero dawn",
-            year:"2018",
-            image:"https://media.senscritique.com/media/000017767748/source_big/Horizon_Zero_Dawn.jpg",
-            url:""
-        },
-        {
-            id: 2,
-            name:"Apex",
-            year:"2019",
-            image:"https://media.senscritique.com/media/000018355902/source_big/Apex_Legends.jpg",
-            url:""
+                getAllStudiosByName(this.searchTerms).then(genre => {
+                    this.allStudios = genre;
+                });
+
+                getAllSeriesByName(this.searchTerms).then(genre => {
+                    this.allSeries = genre;
+                });
+            },
         }
-    ];
+    }
 </script>
 
 <style scoped>
