@@ -18,7 +18,7 @@ export const getGameByName = (name) => {
             const game = res.results.bindings[0];
 
             return new Promise(resolve => resolve({
-                res: game.res.value || null,
+                uri: game.res.value || null,
                 name: game.name.value || null,
                 abstract: game.abstract.value || null,
                 releaseDate: game.date.value || null
@@ -35,7 +35,7 @@ export const getGameByName = (name) => {
                         OPTIONAL {?artist rdfs:label ?artistName.}
 
                         FILTER langMatches(lang(?artistName), 'en')
-                        filter(?res = <${game.res}>)
+                        filter(?res = <${game.uri}>)
                     }
                 `)
                 .then(res => {
@@ -61,7 +61,7 @@ export const getGameByName = (name) => {
                     OPTIONAL {?composer rdfs:label ?composerName.}
                     
                     FILTER langMatches(lang(?composerName), 'en')
-                    filter(?uri = <${game.res}>)
+                    filter(?uri = <${game.uri}>)
                 }
                 `)
                 .then(res => {
@@ -87,7 +87,7 @@ export const getGameByName = (name) => {
                     OPTIONAL {?director rdfs:label ?directorName.}
                     
                     FILTER langMatches(lang(?directorName), 'en')
-                    filter(?uri = <${game.res}>)
+                    filter(?uri = <${game.uri}>)
                 }
                 `)
                 .then(res => {
@@ -113,7 +113,7 @@ export const getGameByName = (name) => {
                         OPTIONAL {?publisher rdfs:label ?publisherName.}
                         
                         FILTER langMatches(lang(?publisherName), 'en')
-                        filter(?uri = <${game.res}>)
+                        filter(?uri = <${game.uri}>)
                     }
                 `)
                 .then(res => {
@@ -140,7 +140,7 @@ export const getGameByName = (name) => {
                         OPTIONAL {?developer rdfs:label ?developerName.}
                         
                         FILTER langMatches(lang(?developerName), 'en')
-                        filter(?uri = <${game.res}>)
+                        filter(?uri = <${game.uri}>)
                     }
                 `)
                 .then(res => {
@@ -167,7 +167,7 @@ export const getGameByName = (name) => {
                         OPTIONAL {?serie rdfs:label ?serieName.}
                         
                         FILTER langMatches(lang(?serieName), 'en')
-                        filter(?uri = <${game.res}>)
+                        filter(?uri = <${game.uri}>)
                     }
                 `)
                 .then(res => {
@@ -194,7 +194,7 @@ export const getGameByName = (name) => {
                         OPTIONAL {?genre rdfs:label ?genreName.}
                         
                         FILTER langMatches(lang(?genreName), 'en')
-                        filter(?uri = <${game.res}>)
+                        filter(?uri = <${game.uri}>)
                     }
                 `)
                 .then(res => {
@@ -220,7 +220,7 @@ export const getGameByName = (name) => {
                         OPTIONAL {?uri dbp:gspot ?gs}
                         OPTIONAL {?uri dbp:mc ?mc}
                         
-                        filter(?uri = <${game.res}>)
+                        filter(?uri = <${game.uri}>)
                     }
                 `)
                 .then(res => {
@@ -237,15 +237,16 @@ export const getGameByName = (name) => {
                     }))
                 })
         })
-}
+};
 
 export const getAllGamesByName = name => {
     return sparql
         .query(`
-            select distinct ?res ?name ?abstract
+            select distinct ?res ?name min(?releaseDate) as ?date
             WHERE {
                 ?res a dbo:VideoGame;
                 rdfs:label ?name.
+                OPTIONAL {?res dbo:releaseDate ?releaseDate.}
                 FILTER(LangMatches(lang(?name), "en"))
                 FILTER contains(lcase(?name), lcase("${name}"))
             }
@@ -256,7 +257,7 @@ export const getAllGamesByName = name => {
                 games = games.map(game => {
                     return {
                         name: game.name.value,
-                        res: game.res.value
+                        uri: game.res.value
                     };
                 });
                 resolve(games);

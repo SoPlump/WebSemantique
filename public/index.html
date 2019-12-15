@@ -4,15 +4,36 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-
     <meta itemprop="name">
     <meta property="og:title">
-
-    <link rel="icon" href="<%= BASE_URL %>favicon.png">
+    <link rel="icon" href="/favicons/favicon-0.png">
+    <title>DuckDuckGame</title>
   </head>
   <body>
+    <script>
+      function changeFavicon(src) {
+        var link = document.createElement('link'),
+                oldLink = document.getElementById('dynamic-favicon');
+        link.id = 'dynamic-favicon';
+        link.rel = 'shortcut icon';
+        link.href = src;
+        if (oldLink) {
+          document.head.removeChild(oldLink);
+        }
+        document.head.appendChild(link);
+      }
+      let previous = 0;
+      setInterval(() => {
+        let i;
+        do {
+          i = Math.floor(Math.random() * Math.floor(17));
+        } while(i === previous);
+        previous = i;
+        changeFavicon("/favicons/favicon-" + i + ".png");
+      }, 5000);
+    </script>
     <noscript>
-      <strong>We're sorry but websemantique doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+      <strong>We're sorry but DuckDuckGame doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
     <div id="app"></div>
     <!-- built files will be auto injected -->
