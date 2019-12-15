@@ -11,10 +11,12 @@ import GenreView from "./components/GenreView";
 import StudioView from "./components/StudioView";
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faCaretUp } from '@fortawesome/free-solid-svg-icons'
+import { faSortAlphaDown } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import ResultsPage from "./components/ResultsPage";
 
 library.add(faCaretUp);
+library.add(faSortAlphaDown);
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 

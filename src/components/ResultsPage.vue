@@ -1,7 +1,15 @@
 <template>
-    <div class="w-100 flex justify-center mt-5">
-        <div class="w-4/5 border-1 flex flex-col">
+    <div class="flex w-full flex-col items-center">
+
+        <div class="flex w-4/5 mt-20 mb-10">
             <Searchpage></Searchpage>
+            <div v-on:click="trier" class="w-1/6 cursor-pointer flex justify-center items-center">
+                <font-awesome-icon :icon="['fas', 'sort-alpha-down']" class="text-2xl m-2"/>
+                <span>Trier</span>
+            </div>
+        </div>
+
+        <div class=" border-1 w-4/5 flex flex-col">
 
             <ResultComponent v-show="allGames.length !== 0" v-bind:results-all="allGames" ref="games" title="Video games"></ResultComponent>
             <ResultComponent v-show="allGenres.length !== 0" v-bind:results-all="allGenres" ref="genres" title="Genre"></ResultComponent>
@@ -87,8 +95,13 @@
                         this.noResults = false;
                     }
                 }
+            },
+            trier: function(){
+                this.allGames.sort((a, b)=>{return a.name.localeCompare(b.name)});
+                this.allStudios.sort((a, b)=>{return a.name.localeCompare(b.name)});
+                this.allSeries.sort((a, b)=>{return a.name.localeCompare(b.name)});
+                this.allGenres.sort((a, b)=>{return a.name.localeCompare(b.name)});
             }
-
         }
     }
 </script>

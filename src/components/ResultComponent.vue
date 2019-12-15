@@ -31,6 +31,7 @@
                 immediate: true,
                 deep: true,
                 handler(){
+                    this.expanded = false;
                     this.resultsSmall = this.resultsAll;
                     if(this.resultsAll.length > 5){
                         this.resultsSmall = this.resultsAll.slice(0, 5);
