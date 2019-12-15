@@ -1,8 +1,10 @@
 <template>
     <div class="flex w-full flex-col items-center">
-
+        <vue-headful
+                :title="'DuckDuckGame - Search results for ' + searchTerms"
+        />
         <div class="flex w-4/5 mt-20 mb-10">
-            <Searchpage></Searchpage>
+            <Searchpage :search-terms="searchTerms"></Searchpage>
             <div v-on:click="trier" class="w-1/6 cursor-pointer flex justify-center items-center">
                 <font-awesome-icon :icon="['fas', 'sort-alpha-down']" class="text-2xl m-2"/>
                 <span>Trier</span>

@@ -14,11 +14,13 @@ import { faCaretUp } from '@fortawesome/free-solid-svg-icons'
 import { faSortAlphaDown } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import ResultsPage from "./components/ResultsPage";
+import vueHeadful from 'vue-headful';
 
 library.add(faCaretUp);
 library.add(faSortAlphaDown);
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
+Vue.component('vue-headful', vueHeadful);
 
 Vue.config.productionTip = false;
 
