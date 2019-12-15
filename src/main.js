@@ -12,6 +12,7 @@ import StudioView from "./components/StudioView";
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faCaretUp } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import ResultsPage from "./components/ResultsPage";
 
 library.add(faCaretUp);
 
@@ -24,6 +25,7 @@ Vue.use(VueRouter);
 export const router = new VueRouter({
   routes: [
     {path: '/', component: Searchpage},
+    {path : '/search',component:ResultsPage},
     {path : '/game/:gameName',component:VideoGameView},
     {path : '/series/:serieName',component:SerieView},
     {path : '/genre/:genreName',component:GenreView},

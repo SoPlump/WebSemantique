@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="h-screen">
     <NavBar title="Welcome to DuckDuckGame!" id="navbar"></NavBar>
-    <router-view id="content"></router-view>
+    <router-view id="content" :key="$route.fullPath"></router-view>
   </div>
 </template>
 
