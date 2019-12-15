@@ -1,7 +1,7 @@
 <template>
     <ul>
-        <li v-for="serie in series" :key="serie.id">
-            {{ serie }}
+        <li v-for="serie in series" :key="serie.serieName">
+            {{ serie.serieName }}
         </li>
     </ul>
 </template>
