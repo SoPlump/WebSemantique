@@ -60,7 +60,7 @@ export const getGenreByName = name => {
 export const getAllGenresByName = name => {
     return sparql
         .query(`
-            select ?uri ?name ?abstract
+            select ?uri ?name
             WHERE {
                 ?uri a yago:WikicatVideoGameGenres;
                 rdfs:label ?name.
@@ -175,7 +175,7 @@ export const getStudioByName = name => {
 export const getAllStudiosByName = name => {
     return sparql
         .query(`
-            SELECT ?uri ?name WHERE {
+            SELECT DISTINCT ?uri ?name WHERE {
                 ?uri a ?type;
                 foaf:name ?name.
                 FILTER contains(lcase(?name), lcase("${name}"))
@@ -312,7 +312,7 @@ export const getSerieByName = (name) => {
 
 export const getAllSeriesByName = (name) => {
     return sparql.query(`
-        select distinct ?uri ?name ?abstract
+        select distinct ?uri ?name
         WHERE {
             ?game a dbo:VideoGame;
             dbo:series ?uri.
