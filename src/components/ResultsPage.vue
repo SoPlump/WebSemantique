@@ -1,9 +1,18 @@
 <template>
     <div class="w-100 flex justify-center mt-5">
         <div class="w-4/5 border-1 flex flex-col">
-            <ResultComponent v-bind:results-all="allGenres" title="Genre"></ResultComponent>
-            <ResultComponent v-bind:results-all="allStudios" title="Studios"></ResultComponent>
-            <ResultComponent v-bind:results-all="allSeries" title="Series"></ResultComponent>
+            <ResultComponent v-show="allGames.length !== 0" v-bind:results-all="allGames" ref="games" title="Video games"></ResultComponent>
+            <ResultComponent v-show="allGenres.length !== 0" v-bind:results-all="allGenres" ref="genres" title="Genre"></ResultComponent>
+            <ResultComponent v-show="allStudios.length !== 0" v-bind:results-all="allStudios" ref="studios" title="Studios"></ResultComponent>
+            <ResultComponent v-show="allSeries.length !== 0" v-bind:results-all="allSeries" ref="series" title="Series"></ResultComponent>
+
+            <div v-if="searching" class="text-4xl text-gray-600 mt-10">
+                Searching...
+            </div>
+
+            <div v-show="noResults" class="text-4xl text-gray-600 mt-10">
+                No results
+            </div>
         </div>
     </div>
 </template>
@@ -13,6 +22,7 @@
     import {getAllGenresByName} from "../dbpedia-query"
     import {getAllStudiosByName} from "../dbpedia-query"
     import {getAllSeriesByName} from "../dbpedia-query"
+    import {getAllGamesByName} from "../game-query"
 
     export default {
         name: "ResultsPage",
@@ -22,23 +32,56 @@
             return {
                 allGenres:[],
                 allStudios:[],
-                allSeries:[]
+                allSeries:[],
+                allGames:[],
+                noResults: false,
+                searching: false,
+                cpt: 0
             }
         },
         methods: {
             search: function() {
-                getAllGenresByName(this.searchTerms).then(genre => {
-                    this.allGenres = genre;
+                this.searching = true;
+                this.noResults = false;
+                this.cpt = 0;
+
+                this.allGenres=[];
+                this.allStudios=[];
+                this.allSeries=[];
+                this.allGames=[];
+
+                getAllGenresByName(this.searchTerms).then(res => {
+                    this.allGenres = res;
+                    this.checkSearching();
                 });
 
-                getAllStudiosByName(this.searchTerms).then(genre => {
-                    this.allStudios = genre;
+                getAllStudiosByName(this.searchTerms).then(res => {
+                    this.allStudios = res;
+                    this.checkSearching();
                 });
 
-                getAllSeriesByName(this.searchTerms).then(genre => {
-                    this.allSeries = genre;
+                getAllSeriesByName(this.searchTerms).then(res => {
+                    this.allSeries = res;
+                    this.checkSearching();
+                });
+
+                getAllGamesByName(this.searchTerms).then(res => {
+                    this.allGames = res;
+                    this.checkSearching();
                 });
             },
+            checkSearching: function(){
+                this.cpt ++;
+                if(this.cpt === 1){
+                    this.searching = false;
+                }
+                else if(this.cpt === 3){
+                    if(this.allStudios.length === 0 && this.allGames.length === 0 && this.allGenres.length === 0 && this.allSeries.length === 0){
+                        this.noResults = false;
+                    }
+                }
+            }
+
         }
     }
 </script>

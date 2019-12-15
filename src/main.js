@@ -11,6 +11,13 @@ import SparqlHttp from "./SparqlHttp";
 import SerieView from "./components/SerieView";
 import GenreView from "./components/GenreView";
 import StudioView from "./components/StudioView";
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faCaretUp } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+library.add(faCaretUp);
+
+Vue.component('font-awesome-icon', FontAwesomeIcon);
 
 Vue.config.productionTip = false;
 
