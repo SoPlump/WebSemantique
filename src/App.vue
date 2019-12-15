@@ -1,18 +1,21 @@
 <template>
   <div id="app" class="h-screen">
-    <NavBar title="Jeux Vidéo" id="navbar"></NavBar>
+    <NavBar title="Welcome to DuckDuckGame!" id="navbar"></NavBar>
     <router-view id="content"></router-view>
   </div>
 </template>
 
 <script>
-  import NavBar from "./components/NavBar";
+    import NavBar from "./components/NavBar";
 
-  export default {
-  name: 'app',
-  components: {
-    NavBar,
-  },
+    export default {
+    name: 'app',
+    components: {
+      NavBar,
+    },
+    mounted(){
+      document.title = "DuckDuckGame"
+    }
 }
 </script>
 

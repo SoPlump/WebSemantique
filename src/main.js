@@ -2,8 +2,6 @@ import Vue from 'vue'
 import App from './App.vue'
 import "@/assets/css/output.css"
 import VueRouter from 'vue-router'
-import Welcome from "./components/Welcome";
-import ResultsPage from "./components/ResultsPage";
 import Pagenotfound from "./components/Pagenotfound";
 import Searchpage from "./components/Searchpage";
 import VideoGameView from "./components/VideoGameView";
@@ -25,9 +23,7 @@ Vue.use(VueRouter);
 
 export const router = new VueRouter({
   routes: [
-    {path : '/', component: Searchpage},
-    {path : '/search', component: ResultsPage},
-    {path : '/home', component: Welcome},
+    {path: '/', component: Searchpage},
     {path : '/game/:gameName',component:VideoGameView},
     {path : '/series/:serieName',component:SerieView},
     {path : '/genre/:genreName',component:GenreView},
