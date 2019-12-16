@@ -1,20 +1,18 @@
 <template>
-    <div>
-        <div>
-            Studio : {{studioName}}
+    <div class="flex flex-col">
+        <div class="mb-10">
+            <h1 class="text-4xl p-4 rounded-lg border-purple-700 border-2 mb-3">{{name}}</h1>
         </div>
 
-        <span>Publisher of</span>
-        <game-list v-bind:games=publishedGames>
+        <div class="mb-10">
+            <h1 class="text-3xl border-purple-700 border-b-2 mb-3">Publisher of</h1>
+            <game-list v-bind:games=publishedGames></game-list>
+        </div>
 
-        </game-list>
-
-        <span>Developer of</span>
-        <game-list v-bind:games=developedGames>
-
-        </game-list>
-
-
+        <div class="mb-10">
+            <h1 class="text-3xl border-purple-700 border-b-2 mb-3">Developer of</h1>
+            <game-list v-bind:games=developedGames></game-list>
+        </div>
     </div>
 </template>
 
@@ -37,6 +35,7 @@
             getStudioByName(this.studioName).then(studio => {
                 this.publishedGames = studio.publishedGames;
                 this.developedGames = studio.developedGames;
+                this.name = studio.name;
             })
         },
 
