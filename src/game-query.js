@@ -234,9 +234,9 @@ export const getGameByName = (name) => {
                         ...game,
                         gameCritics: critics.map(critics => {
                             return {
-                                mcCritic: critics.mcCritic.value,
-                                ignCritic: critics.ignCritic.value,
-                                gspotCritic: critics.gspotCritic.value
+                                mcCritic: (critics.mcCritic != null ? critics.mcCritic.value : ""),
+                                ignCritic: (critics.ignCritic != null ? critics.ignCritic.value : ""),
+                                gspotCritic: (critics.gspotCritic != null ? critics.gspotCritic.value : "")
                             }
                         })
                     }))
@@ -246,11 +246,11 @@ export const getGameByName = (name) => {
                     let uriList = "";
 
                     game.gameSeries.forEach( serie => {
-                        let cutUri = serie.serieUri.split('/');
-                        const uri = cutUri[cutUri.length - 1];
+                        //let cutUri = serie.serieUri.split('/');
+                        //const uri = cutUri[cutUri.length - 1];
                         /*eslint-disable no-console*/
-                        console.log(uri);
-                        uriList = uriList + "dbr:"+uri+",";
+                        //console.log(uri);
+                        uriList = uriList + "<"+serie.serieUri+">,";
                     });
 
 
@@ -290,11 +290,11 @@ export const getGameByName = (name) => {
                     let uriList = "";
 
                     game.gameGenres.forEach( genre => {
-                        let cutUri = genre.genreUri.split('/');
-                        const uri = cutUri[cutUri.length - 1];
+                        //let cutUri = genre.genreUri.split('/');
+                        //const uri = cutUri[cutUri.length - 1];
                         /*eslint-disable no-console*/
-                        console.log(uri);
-                        uriList = uriList + "dbr:"+uri+",";
+                        //console.log(uri);
+                        uriList = uriList + "<"+genre.genreUri+">,";
                     });
 
                     uriList = uriList.slice(0, -1);
@@ -333,11 +333,11 @@ export const getGameByName = (name) => {
                     let uriList = "";
 
                     game.gameDevelopers.forEach( dev => {
-                        let cutUri = dev.developerUri.split('/');
-                        const uri = cutUri[cutUri.length - 1];
+                        //let cutUri = dev.developerUri.split('/');
+                        //const uri = cutUri[cutUri.length - 1];
                         /*eslint-disable no-console*/
-                        console.log(uri);
-                        uriList = uriList + "dbr:"+uri+",";
+                        //console.log(uri);
+                        uriList = uriList + "<"+dev.developerUri+">,";
                     });
 
                     uriList = uriList.slice(0, -1);
