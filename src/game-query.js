@@ -16,12 +16,17 @@ export const getGameByName = (name) => {
     `)
         .then(res => {
             const game = res.results.bindings[0];
+            /*eslint-disable no-console*/
+            console.log(game.res);
+            let cutGameUri = game.res.value.split('/');
+            const gameUri = '/game/'+cutGameUri[cutGameUri.length - 1];
 
             return new Promise(resolve => resolve({
                 uri: game.res.value || null,
-                name: game.name.value || null,
-                abstract: game.abstract.value || null,
-                releaseDate: game.date.value || null
+                name: (game.name != null ? game.name.value : ""),
+                abstract: (game.abstract != null ? game.abstract.value : ""),
+                releaseDate: (game.date != null ? game.date.value : ""),
+                cutUri: gameUri
             }));
         })
         .then(game => {
@@ -269,9 +274,12 @@ export const getGameByName = (name) => {
                             return new Promise(resolve => resolve({
                                 ...game,
                                 otherGamesFromSameSerie: gameFromSeries.map(game => {
+                                    let cutGameUri = game.game.value.split('/');
+                                    const gameUri = '/game/'+cutGameUri[cutGameUri.length - 1];
                                     return {
                                         name: game.label.value,
-                                        uri: game.game.value
+                                        uri: game.game.value,
+                                        cutUri:gameUri
                                     }
                                 })
                             }))
@@ -309,9 +317,12 @@ export const getGameByName = (name) => {
                             return new Promise(resolve => resolve({
                                 ...game,
                                 otherGamesFromSameGenre: gameFromGenres.map(game => {
+                                    let cutGameUri = game.game.value.split('/');
+                                    const gameUri = '/game/'+cutGameUri[cutGameUri.length - 1];
                                     return {
                                         name: game.label.value,
-                                        uri: game.game.value
+                                        uri: game.game.value,
+                                        cutUri: gameUri
                                     }
                                 })
                             }))
@@ -345,13 +356,17 @@ export const getGameByName = (name) => {
                         LIMIT 10`
                     )
                         .then(res => {
+
                             const gameFromDevs = res.results.bindings;
                             return new Promise(resolve => resolve({
                                 ...game,
                                 otherGamesFromSameDeveloper: gameFromDevs.map(game => {
+                                    let cutGameUri = game.game.value.split('/');
+                                    const gameUri = '/game/'+cutGameUri[cutGameUri.length - 1];
                                     return {
                                         name: game.label.value,
-                                        uri: game.game.value
+                                        uri: game.game.value,
+                                        cutUri: gameUri
                                     }
                                 })
                             }))
