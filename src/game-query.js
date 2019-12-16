@@ -236,13 +236,30 @@ export const getGameByName = (name) => {
                         })
                     }))
                 }).then( game => {
+                    let cutGameUri = game.uri.split('/');
+                    const gameUri = cutGameUri[cutGameUri.length - 1];
+                    let uriList = "";
+
+                    game.gameSeries.forEach( serie => {
+                        let cutUri = serie.serieUri.split('/');
+                        const uri = cutUri[cutUri.length - 1];
+                        /*eslint-disable no-console*/
+                        console.log(uri);
+                        uriList = uriList + "dbr:"+uri+",";
+                    });
+
+
+                    uriList = uriList.slice(0, -1);
+                    /*eslint-disable no-console*/
+                    console.log("URI : " + uriList);
                     return sparql.query(
                         `
                         select distinct ?game ?label
                         where {
-                        ?game dbo:series dbr:Final_Fantasy;
+                        ?game dbo:series ?serie;
                         rdfs:label ?label.
-                        FILTER(?game != dbr:Final_Fantasy_X)
+                        FILTER(?game != dbr:${gameUri})
+                        FILTER(?serie in (${uriList}))
                         FILTER langMatches(lang(?label), 'en')
                         }
                         LIMIT 10`
@@ -252,6 +269,86 @@ export const getGameByName = (name) => {
                             return new Promise(resolve => resolve({
                                 ...game,
                                 otherGamesFromSameSerie: gameFromSeries.map(game => {
+                                    return {
+                                        name: game.label.value,
+                                        uri: game.game.value
+                                    }
+                                })
+                            }))
+                        })
+                }).then( game => {
+                    let cutGameUri = game.uri.split('/');
+                    const gameUri = cutGameUri[cutGameUri.length - 1];
+                    let uriList = "";
+
+                    game.gameGenres.forEach( genre => {
+                        let cutUri = genre.genreUri.split('/');
+                        const uri = cutUri[cutUri.length - 1];
+                        /*eslint-disable no-console*/
+                        console.log(uri);
+                        uriList = uriList + "dbr:"+uri+",";
+                    });
+
+                    uriList = uriList.slice(0, -1);
+                    /*eslint-disable no-console*/
+                    console.log("URI : " + uriList);
+                    return sparql.query(
+                        `
+                        select distinct ?game ?label
+                        where {
+                        ?game dbp:genre ?genre;
+                        rdfs:label ?label.
+                        FILTER(?game != dbr:${gameUri})
+                        FILTER(?genre in (${uriList}))
+                        FILTER langMatches(lang(?label), 'en')
+                        }
+                        LIMIT 10`
+                    )
+                        .then(res => {
+                            const gameFromGenres = res.results.bindings;
+                            return new Promise(resolve => resolve({
+                                ...game,
+                                otherGamesFromSameGenre: gameFromGenres.map(game => {
+                                    return {
+                                        name: game.label.value,
+                                        uri: game.game.value
+                                    }
+                                })
+                            }))
+                        })
+                }).then( game => {
+                    let cutGameUri = game.uri.split('/');
+                    const gameUri = cutGameUri[cutGameUri.length - 1];
+                    let uriList = "";
+
+                    game.gameDevelopers.forEach( dev => {
+                        let cutUri = dev.developerUri.split('/');
+                        const uri = cutUri[cutUri.length - 1];
+                        /*eslint-disable no-console*/
+                        console.log(uri);
+                        uriList = uriList + "dbr:"+uri+",";
+                    });
+
+                    uriList = uriList.slice(0, -1);
+                    /*eslint-disable no-console*/
+                    console.log("URI : " + uriList);
+                    return sparql.query(
+                        `
+                        select distinct ?game ?label
+                        where {
+                        ?game dbp:developer ?genre;
+                        rdfs:label ?label.
+                        FILTER(?game != dbr:${gameUri})
+                        FILTER(?genre in (${uriList}))
+                        FILTER langMatches(lang(?label), 'en')
+                        }
+                        LIMIT 10`
+                    )
+                        .then(res => {
+                            const gameFromDevs = res.results.bindings;
+                            return new Promise(resolve => resolve({
+                                ...game,
+                                otherGamesFromSameDeveloper: gameFromDevs.map(game => {
                                     return {
                                         name: game.label.value,
                                         uri: game.game.value
