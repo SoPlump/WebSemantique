@@ -74,7 +74,8 @@ export const getAllGenresByName = name => {
                 genres = genres.map(genre => {
                     return {
                         name: genre.name.value,
-                        uri: genre.uri.value
+                        uri: genre.uri.value,
+                        local_uri: 'genre/' + genre.uri.value.split('/').pop()
                     };
                 });
                 resolve(genres);
@@ -189,7 +190,9 @@ export const getAllStudiosByName = name => {
                 studios = studios.map(studio => {
                     return {
                         name: studio.name.value,
-                        uri: studio.uri.value
+                        uri: studio.uri.value,
+                        local_uri: 'studio/' + studio.uri.value.split('/').pop()
+
                     };
                 });
                 resolve(studios);
@@ -327,7 +330,8 @@ export const getAllSeriesByName = (name) => {
                 series = series.map(serie => {
                     return {
                         name: serie.name.value,
-                        uri: serie.uri.value
+                        uri: serie.uri.value,
+                        local_uri: 'serie/' + serie.uri.value.split('/').pop()
                     };
                 });
                 resolve(series);

@@ -31,7 +31,7 @@ export const router = new VueRouter({
     {path: '/', component: Searchpage},
     {path : '/search',component:ResultsPage},
     {path : '/game/:gameName',component:VideoGameView},
-    {path : '/series/:serieName',component:SerieView},
+    {path : '/serie/:serieName',component:SerieView},
     {path : '/genre/:genreName',component:GenreView},
     {path : '/studio/:studioName',component:StudioView},
 

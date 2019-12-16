@@ -8,13 +8,15 @@
             <div class="w-1/4 pt-4 text-right">{{resultsAll.length}} results</div>
         </div>
         <hr class="border-black">
-        <div v-for="result in results" v-bind:key="result.uri" v-on:click="redirection(result.uri)" class="w-100 border-2 border-black rounded-lg align-middle flex my-2 p-2 hover:shadow-xl cursor-pointer">
+        <div v-for="result in results" v-bind:key="result.uri" v-on:click="redirection(result.local_uri)" class="w-100 border-2 border-black rounded-lg align-middle flex my-2 p-2 hover:shadow-xl cursor-pointer">
             {{result.name}}
         </div>
     </div>
 </template>
 
 <script>
+    import {router} from '../main';
+
     export default {
         name: "ResultComponent",
         props: ["title", "resultsAll"],
@@ -41,12 +43,11 @@
             }
         },
         methods: {
-            redirection : (e) => {
-                var splitted = e.split("/");
-                var res = splitted[splitted.length - 1];
+            redirection : function(e)   {
+
                 /*eslint-disable no-console*/
-                console.log(res)
-                //this.router.push();
+                console.log(e);
+                router.push({path:e});
             },
             expand : function() {
                 this.expanded = !this.expanded;

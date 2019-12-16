@@ -257,7 +257,8 @@ export const getAllGamesByName = name => {
                 games = games.map(game => {
                     return {
                         name: game.name.value,
-                        uri: game.res.value
+                        uri: game.res.value,
+                        local_uri: 'game/' + game.res.value.split('/').pop()
                     };
                 });
                 resolve(games);
