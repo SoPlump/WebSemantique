@@ -9,10 +9,9 @@ import SparqlHttp from "./SparqlHttp";
 import SerieView from "./components/SerieView";
 import GenreView from "./components/GenreView";
 import StudioView from "./components/StudioView";
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faCaretUp } from '@fortawesome/free-solid-svg-icons'
-import { faSortAlphaDown } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import {library} from '@fortawesome/fontawesome-svg-core'
+import {faCaretUp, faSortAlphaDown} from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
 import ResultsPage from "./components/ResultsPage";
 import vueHeadful from 'vue-headful';
 

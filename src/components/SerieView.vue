@@ -12,9 +12,9 @@
             editor :
         </span>
 
-        <publisher-list v-bind:publishers= editors>
+        <developerlist v-bind:developers= developers>
 
-        </publisher-list>
+        </developerlist>
 
         <div>
             date 1er jeu : {{firstRelease}}
@@ -38,17 +38,17 @@
 <script>
     import {getSerieByName} from "../dbpedia-query";
     import GenreList from "./common/genreList";
-    import PublisherList from "./common/publisherList";
-    import GameList from "./common/gameListe";
+    import GameList from "./common/gameList";
+    import Developerlist from "./common/developerList";
 
     export default {
         name: "SerieView",
-        components: {GameList, PublisherList, GenreList},
+        components: {Developerlist, GameList, GenreList},
         data: function () {
             return {
                 serieName: String,
                 genres: Array,
-                editors: Array,
+                developers: Array,
                 abstract: String,
                 firstRelease: String,
                 games: Array,
@@ -61,7 +61,7 @@
                 this.firstRelease = serie.firstReleaseDate;
                 this.abstract = serie.abstract;
                 this.genres = serie.genres;
-                this.editors = serie.publishers;
+                this.developers = serie.developers;
                 this.games = serie.games;
 
 

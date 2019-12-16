@@ -1,7 +1,7 @@
 <template>
     <ul>
-        <li v-for="publisher in publishers" :key="publisher.name">
-            <custom-link :uri=publisher.cutUri :name=publisher.name>
+        <li v-for="developer in developers" :key="developer.developerName">
+            <custom-link :uri=developer.cutUri :name=developer.developerName>
 
             </custom-link>
         </li>
@@ -9,12 +9,13 @@
 </template>
 
 <script>
+
     import CustomLink from "./customLink";
     export default {
-        name: "publisherList",
+        name: "developerlist",
         components: {CustomLink},
         props: {
-            publishers: Array,
+            developers: Array,
         }
     }
 </script>

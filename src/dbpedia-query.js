@@ -41,9 +41,12 @@ export const getGenreByName = name => {
                         return new Promise(resolve => resolve({
                             ...genre,
                             games: games.map(game => {
+                                const gameUri = game.uri.value.split('/');
+                                const cutUri = '/game/'+gameUri[gameUri.length - 1];
                                 return {
                                     name: game.name.value,
-                                    uri: game.uri.value
+                                    uri: game.uri.value,
+                                    cutUri: cutUri
                                 }
                             })
                         }));
@@ -129,9 +132,12 @@ export const getStudioByName = name => {
                         return new Promise(resolve => resolve({
                             ...studio,
                             developedGames: games.map(game => {
+                                const gameUri = game.uri.value.split('/');
+                                const cutUri = '/game/'+gameUri[gameUri.length - 1];
                                 return {
                                     name: game.name.value,
-                                    uri: game.uri.value
+                                    uri: game.uri.value,
+                                    cutUri: cutUri
                                 }
                             })
                         }));
@@ -157,9 +163,12 @@ export const getStudioByName = name => {
                         return new Promise(resolve => resolve({
                             ...studio,
                             publishedGames: games.map(game => {
+                                const gameUri = game.uri.value.split('/');
+                                const cutUri = '/game/'+gameUri[gameUri.length - 1];
                                 return {
                                     name: game.name.value,
-                                    uri: game.uri.value
+                                    uri: game.uri.value,
+                                    cutUri: cutUri
                                 }
                             })
                         }));
@@ -244,9 +253,12 @@ export const getSerieByName = (name) => {
                     const games = res.results.bindings;
                     let usableGames = [];
                     games.forEach(game => {
+                        const gameUri = game.game.value.split('/');
+                        const cutUri = '/game/'+gameUri[gameUri.length - 1];
                         usableGames.push({
                             name: game.gameName.value,
-                            uri: game.game.value
+                            uri: game.game.value,
+                            cutUri: cutUri
                         })
                     });
                     return new Promise(resolve => resolve({
@@ -270,9 +282,12 @@ export const getSerieByName = (name) => {
                     const genres = res.results.bindings;
                     let usableGenres = [];
                     genres.forEach(genre => {
+                        const genreUri = genre.genre.value.split('/');
+                        const cutUri = '/genre/'+genreUri[genreUri.length - 1];
                         usableGenres.push({
                             genreName: genre.genreName.value,
-                            genre: genre.genre.value
+                            genre: genre.genre.value,
+                            cutUri: cutUri
                         })
                     });
                     return new Promise(resolve => resolve({
@@ -296,9 +311,12 @@ export const getSerieByName = (name) => {
                     const developers = res.results.bindings;
                     let usableDevelopers = [];
                     developers.forEach(developer => {
+                        const devUri = developer.developer.value.split('/');
+                        const cutUri = '/studio/'+devUri[devUri.length - 1];
                         usableDevelopers.push({
                             developer:developer.developer.value,
-                            developerName:developer.developerName.value
+                            developerName:developer.developerName.value,
+                            cutUri: cutUri
                         })
                     });
                     return new Promise(resolve => resolve({

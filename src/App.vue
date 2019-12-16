@@ -6,9 +6,9 @@
 </template>
 
 <script>
-    import NavBar from "./components/NavBar";
+  import NavBar from "./components/NavBar";
 
-    export default {
+  export default {
     name: 'app',
     components: {
       NavBar,

@@ -31,9 +31,7 @@
 
 <script>
     import ResultComponent from "./ResultComponent";
-    import {getAllGenresByName} from "../dbpedia-query"
-    import {getAllStudiosByName} from "../dbpedia-query"
-    import {getAllSeriesByName} from "../dbpedia-query"
+    import {getAllGenresByName, getAllSeriesByName, getAllStudiosByName} from "../dbpedia-query"
     import {getAllGamesByName} from "../game-query"
     import Searchpage from "./Searchpage";
 

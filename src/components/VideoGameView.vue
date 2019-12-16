@@ -9,15 +9,15 @@
 
         </FactSheet>
 
-        <Team id = "team" dev = "ADD DEV" director="ADD DIRECTOR" producer="PRODUCER" v-bind:game-artist=artists>
+        <Team id = "team" v-bind:developers=developers  v-bind:directors=directors v-bind:producers=producers v-bind:gameArtists=artists v-bind:composers=composers>
 
         </Team>
 
-        <Feedback award="ADD AWARD" ign="ADD IGN" gs="ADD GS" :mc= mc>
+        <Feedback :ign=ign :gs=gs :mc= mc>
 
         </Feedback>
 
-        <VGseeAlso>
+        <VGseeAlso v-bind:games_genre=games_genre v-bind:games_dev=games_dev v-bind:games_serie=games_serie>
 
         </VGseeAlso>
 
@@ -54,8 +54,17 @@
                 abstract : "",
                 releaseDate : "",
                 artists: [],
+                composers: [],
+                developers: [],
+                directors: [],
+                producers: [],
                 award: "",
                 mc : "",
+                ign: "",
+                gs: "",
+                games_serie: [],
+                games_dev: [],
+                games_genre: [],
 
             }
         },
@@ -69,8 +78,17 @@
                 this.abstract = game.abstract;
                 this.releaseDate = game.releaseDate;
                 this.artists = game.gameArtists;
+                this.composers = game.gameComposers;
+                this.developers = game.gameDevelopers;
+                this.directors = game.gameDirectors;
+                this.producers = game.gameProducers;
                 this.genre = game.gameGenres;
-                this.mc = game.mcCritic;
+                this.mc = game.gameCritics[0].mcCritic;
+                this.ign = game.gameCritics[0].ignCritic;
+                this.gs = game.gameCritics[0].gspotCritic;
+                this.games_serie = game.otherGamesFromSameSerie;
+                this.games_dev = game.otherGamesFromSameDeveloper;
+                this.games_genre = game.otherGamesFromSameGenre;
 
             });
         }
