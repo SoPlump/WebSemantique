@@ -118,7 +118,7 @@ export const getStudioByName = name => {
             if(studio) {
                 return sparql
                     .query(`
-                    SELECT ?uri ?name WHERE {
+                    SELECT distinct ?uri ?name WHERE {
                         ?uri a dbo:VideoGame;
                         dbo:genre ?genre;
                         rdfs:label ?name;
@@ -219,8 +219,8 @@ export const getSerieByName = (name) => {
         SELECT ?serie, ?label, ?abstract, ?firstReleaseDate, ?genre, ?genreLabel, ?publisher
         WHERE  {
         ?serie rdfs:label ?label;
-        dbo:abstract ?abstract;
-        dbp:firstReleaseDate ?firstReleaseDate.
+        dbo:abstract ?abstract.
+        OPTIONAL {?serie dbp:firstReleaseDate ?firstReleaseDate.}
         FILTER (?serie = dbr:${name})
         FILTER (lang(?label) = 'en')
         FILTER (lang(?abstract) = 'en')
@@ -235,7 +235,7 @@ export const getSerieByName = (name) => {
             return new Promise(resolve => resolve({
                 abstract: serie.abstract.value,
                 label: serie.label.value,
-                firstReleaseDate: serie.firstReleaseDate.value,
+                firstReleaseDate: (serie.firstReleaseDate != null ? serie.firstReleaseDate.value : ""),
                 serie: cutUri[cutUri.length - 1].replace('(', '\\(').replace(')', '\\)')
             }));
             //return new Promise(resolve => resolve(res));

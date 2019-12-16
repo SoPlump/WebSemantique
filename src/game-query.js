@@ -275,7 +275,8 @@ export const getGameByName = (name) => {
                         `
                         select distinct ?game ?label
                         where {
-                        ?game dbo:series ?serie;
+                        ?game a dbo:VideoGame;
+                        dbo:series ?serie;
                         rdfs:label ?label.
                         FILTER(?game != <${game.uri}>)
                         FILTER(?serie in (${uriList}))
@@ -318,7 +319,8 @@ export const getGameByName = (name) => {
                         `
                         select distinct ?game ?label
                         where {
-                        ?game dbp:genre ?genre;
+                        ?game a dbo:VideoGame;
+                        dbo:genre ?genre;
                         rdfs:label ?label.
                         FILTER(?game != <${game.uri}>)
                         FILTER(?genre in (${uriList}))
@@ -361,16 +363,16 @@ export const getGameByName = (name) => {
                         `
                         select distinct ?game ?label
                         where {
-                        ?game dbp:developer ?genre;
+                        ?game a dbo:VideoGame;
+                        dbo:developer ?dev;
                         rdfs:label ?label.
                         FILTER(?game != <${game.uri}>)
-                        FILTER(?genre in (${uriList}))
-                        FILTER langMatches(lang(?label), 'en')
+                        FILTER(?dev in (${uriList}))
+                        FILTER (lang(?label) = 'en')
                         }
                         LIMIT 10`
                     )
                         .then(res => {
-
                             const gameFromDevs = res.results.bindings;
                             return new Promise(resolve => resolve({
                                 ...game,
