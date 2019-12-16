@@ -9,7 +9,7 @@
 
         </FactSheet>
 
-        <Team id = "team" v-bind:developers=developers  v-bind:directors=directors producer="PRODUCER" v-bind:gameArtists=artists v-bind:composers=composers>
+        <Team id = "team" v-bind:developers=developers  v-bind:directors=directors v-bind:producers=producers v-bind:gameArtists=artists v-bind:composers=composers>
 
         </Team>
 
@@ -57,6 +57,7 @@
                 composers: [],
                 developers: [],
                 directors: [],
+                producers: [],
                 award: "",
                 mc : "",
                 ign: "",
@@ -80,6 +81,7 @@
                 this.composers = game.gameComposers;
                 this.developers = game.gameDevelopers;
                 this.directors = game.gameDirectors;
+                this.producers = game.gameProducers;
                 this.genre = game.gameGenres;
                 this.mc = game.gameCritics[0].mcCritic;
                 this.ign = game.gameCritics[0].ignCritic;

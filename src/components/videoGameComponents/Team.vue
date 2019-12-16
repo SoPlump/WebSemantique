@@ -8,7 +8,12 @@
         <directorlist v-bind:directors= directors>
 
         </directorlist>
-        <div id = 'producer'> Producer :  {{producer}}</div>
+        <span id = 'producer'> Producers : </span>
+        <producer-list v-bind:producers = producers>
+
+        </producer-list>
+
+
         <span> Game Artists :  </span>
         <artistlist v-bind:artists= gameArtists>
 
@@ -26,14 +31,15 @@
     import Developerlist from "../common/developerList";
     import Directorlist from "../common/directorList";
     import Composerlist from "../common/composerList";
+    import ProducerList from "../common/producerList";
 
     export default {
         name: "Team",
-        components: {Composerlist, Directorlist, Developerlist, Artistlist},
+        components: {ProducerList, Composerlist, Directorlist, Developerlist, Artistlist},
         props: {
             dev: String,
             director: String,
-            producer: String,
+            producers: Array,
             gameArtists: Array,
             developers: Array,
             directors: Array,
