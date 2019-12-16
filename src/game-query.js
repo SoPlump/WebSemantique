@@ -177,12 +177,17 @@ export const getGameByName = (name) => {
                 `)
                 .then(res => {
                     const series = res.results.bindings;
+                    /*eslint-disable no-console*/
+                    console.log(series);
                     return new Promise(resolve => resolve({
                         ...game,
                         gameSeries: series.map(series => {
+                            const serieUri = series.serie.value.split('/');
+                            const cutUri = '/serie/'+serieUri[serieUri.length - 1];
                             return {
                                 serieName: series.serieName.value,
-                                serieUri: series.serie.value
+                                serieUri: series.serie.value,
+                                cutUri: cutUri
                             }
                         })
                     }))
