@@ -1,28 +1,29 @@
 <template>
     <div>
-        <span id = 'dev'> Developer : </span>
-        <developerlist v-bind:developers=developers>
+        <div class="mb-10">
+            <h1 class="text-3xl border-purple-700 border-b-2 mb-3">Developer</h1>
+            <developerlist v-bind:developers=developers></developerlist>
+        </div>
 
-        </developerlist>
-        <span id = 'director'> Director :  </span>
-        <directorlist v-bind:directors= directors>
+        <div class="mb-10">
+            <h1 class="text-3xl border-purple-700 border-b-2 mb-3">Director</h1>
+            <directorlist v-bind:directors= directors></directorlist>
+        </div>
 
-        </directorlist>
-        <span id = 'producer'> Producers : </span>
-        <producer-list v-bind:producers = producers>
+        <div class="mb-10">
+            <h1 class="text-3xl border-purple-700 border-b-2 mb-3">Producers</h1>
+            <producer-list v-bind:producers = producers></producer-list>
+        </div>
 
-        </producer-list>
+        <div class="mb-10">
+            <h1 class="text-3xl border-purple-700 border-b-2 mb-3">Game Artists</h1>
+            <artistlist v-bind:artists= gameArtists></artistlist>
+        </div>
 
-
-        <span> Game Artists :  </span>
-        <artistlist v-bind:artists= gameArtists>
-
-        </artistlist>
-
-        <span> Game Composers : </span>
-        <composerlist v-bind:composers=composers>
-
-        </composerlist>
+        <div class="mb-10">
+            <h1 class="text-3xl border-purple-700 border-b-2 mb-3">Game Composers</h1>
+            <composerlist v-bind:composers=composers></composerlist>
+        </div>
     </div>
 </template>
 
