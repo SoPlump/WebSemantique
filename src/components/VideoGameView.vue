@@ -5,6 +5,8 @@
 
         </div>
 
+        <img :src="imgSrc"/>
+
         <FactSheet :name=gameNameClean :date= releaseDate v-bind:genre= genre v-bind:series=series :abstract=abstract>
 
         </FactSheet>
@@ -32,6 +34,7 @@
     import Team from "./videoGameComponents/Team";
     import VGseeAlso from "./videoGameComponents/VGseeAlso";
     import {getGameByName} from "../game-query";
+    import { getCoverArt } from "../main";
 
     export default {
 
@@ -65,7 +68,7 @@
                 games_serie: [],
                 games_dev: [],
                 games_genre: [],
-
+                imgSrc: ""
             }
         },
         created() {
@@ -90,6 +93,9 @@
                 this.games_dev = game.otherGamesFromSameDeveloper;
                 this.games_genre = game.otherGamesFromSameGenre;
 
+            });
+            getCoverArt(this.gameName).then(imgSrc => {
+                this.imgSrc = imgSrc;
             });
         }
     }

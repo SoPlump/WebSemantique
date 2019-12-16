@@ -14,7 +14,7 @@
       NavBar,
     },
     mounted(){
-      document.title = "DuckDuckGame"
+      document.title = "DuckDuckGame";
     }
 }
 </script>

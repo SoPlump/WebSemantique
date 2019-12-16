@@ -14,6 +14,7 @@ import {faCaretUp, faSortAlphaDown, faExternalLinkAlt} from '@fortawesome/free-s
 import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
 import ResultsPage from "./components/ResultsPage";
 import vueHeadful from 'vue-headful';
+import $ from "jquery";
 
 library.add(faCaretUp);
 library.add(faSortAlphaDown);
@@ -43,6 +44,19 @@ export const router = new VueRouter({
 export const sparql = new SparqlHttp("http://dbpedia.org/sparql", {
   format: "json"
 });
+
+export const getCoverArt = (game) => {
+  return new Promise((resolve, reject) => {
+    $.ajax("http://77.131.77.178:54387/api/" + game, {
+      success: resolve,
+      error: reject
+    });
+  })
+      .catch(error => {
+        /*eslint-disable no-console*/
+        console.error(error);
+      })
+};
 
 new Vue({
   router,
