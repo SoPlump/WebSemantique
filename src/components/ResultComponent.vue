@@ -8,7 +8,7 @@
             <div class="w-1/4 pt-4 text-right">{{resultsAll.length}} results</div>
         </div>
         <hr class="border-black">
-        <div v-for="result in results" v-bind:key="result.uri" v-on:click="redirection(result.local_uri)" class="w-100 border-2 border-black rounded-lg align-middle flex my-2 p-2 hover:shadow-xl cursor-pointer">
+        <div v-for="result in results" v-bind:key="result.uri" v-on:click="redirection(result.local_uri)" class="hover:bg-purple-200 w-100 border-2 border-black rounded-lg align-middle flex my-2 p-2 hover:shadow-xl cursor-pointer">
             {{result.name}}
         </div>
     </div>

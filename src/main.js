@@ -10,13 +10,14 @@ import SerieView from "./components/SerieView";
 import GenreView from "./components/GenreView";
 import StudioView from "./components/StudioView";
 import {library} from '@fortawesome/fontawesome-svg-core'
-import {faCaretUp, faSortAlphaDown} from '@fortawesome/free-solid-svg-icons'
+import {faCaretUp, faSortAlphaDown, faExternalLinkAlt} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
 import ResultsPage from "./components/ResultsPage";
 import vueHeadful from 'vue-headful';
 
 library.add(faCaretUp);
 library.add(faSortAlphaDown);
+library.add(faExternalLinkAlt);
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.component('vue-headful', vueHeadful);
