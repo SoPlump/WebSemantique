@@ -9,15 +9,15 @@
 
         </FactSheet>
 
-        <Team id = "team" dev = "ADD DEV" director="ADD DIRECTOR" producer="PRODUCER" v-bind:game-artist=artists>
+        <Team id = "team" v-bind:developers=developers  v-bind:directors=directors producer="PRODUCER" v-bind:gameArtists=artists>
 
         </Team>
 
-        <Feedback award="ADD AWARD" ign="ADD IGN" gs="ADD GS" :mc= mc>
+        <Feedback award="ADD AWARD" :ign=ign :gs=gs :mc= mc>
 
         </Feedback>
 
-        <VGseeAlso>
+        <VGseeAlso v-bind:games_genre=games_genre v-bind:games_dev=games_dev v-bind:games_serie=games_serie>
 
         </VGseeAlso>
 
@@ -54,8 +54,15 @@
                 abstract : "",
                 releaseDate : "",
                 artists: [],
+                developers: [],
+                directors: [],
                 award: "",
                 mc : "",
+                ign: "",
+                gs: "",
+                games_serie: [],
+                games_dev: [],
+                games_genre: [],
 
             }
         },
@@ -69,8 +76,19 @@
                 this.abstract = game.abstract;
                 this.releaseDate = game.releaseDate;
                 this.artists = game.gameArtists;
+                this.developers = game.gameDevelopers;
+                this.directors = game.gameDirectors;
                 this.genre = game.gameGenres;
-                this.mc = game.mcCritic;
+                this.mc = game.gameCritics[0].mcCritic;
+                this.ign = game.gameCritics[0].ignCritic;
+                this.gs = game.gameCritics[0].gspotCritic;
+                this.games_serie = [];
+                this.games_dev = [];
+                this.games_genre = [];
+
+
+                /*eslint-disable*/
+                console.log("in videoGameView " + this.artists);
 
             });
         }
