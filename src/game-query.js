@@ -235,6 +235,30 @@ export const getGameByName = (name) => {
                             }
                         })
                     }))
+                }).then( game => {
+                    return sparql.query(
+                        `
+                        select distinct ?game ?label
+                        where {
+                        ?game dbo:series dbr:Final_Fantasy;
+                        rdfs:label ?label.
+                        FILTER(?game != dbr:Final_Fantasy_X)
+                        FILTER langMatches(lang(?label), 'en')
+                        }
+                        LIMIT 10`
+                    )
+                        .then(res => {
+                            const gameFromSeries = res.results.bindings;
+                            return new Promise(resolve => resolve({
+                                ...game,
+                                otherGamesFromSameSerie: gameFromSeries.map(game => {
+                                    return {
+                                        name: game.label.value,
+                                        uri: game.game.value
+                                    }
+                                })
+                            }))
+                        })
                 })
         })
 };
