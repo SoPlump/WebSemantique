@@ -82,13 +82,9 @@
                 this.mc = game.gameCritics[0].mcCritic;
                 this.ign = game.gameCritics[0].ignCritic;
                 this.gs = game.gameCritics[0].gspotCritic;
-                this.games_serie = [];
+                this.games_serie = game.otherGamesFromSameSerie;
                 this.games_dev = [];
                 this.games_genre = [];
-
-
-                /*eslint-disable*/
-                console.log("in videoGameView " + this.artists);
 
             });
         }

@@ -19,7 +19,7 @@
 </template>
 
 <script>
-    import GameList from "../common/gameListe";
+    import GameList from "../common/gameList";
 
     export default {
         name: "VGseeAlso",

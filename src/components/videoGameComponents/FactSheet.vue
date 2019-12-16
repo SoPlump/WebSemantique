@@ -17,6 +17,7 @@
 <script>
     import GenreList from "../common/genreList";
     import SerieList from "../common/serieList";
+
     export default {
         name: "FactSheet",
         components: {SerieList, GenreList},

@@ -20,6 +20,7 @@
     import Artistlist from "../common/artistList";
     import Developerlist from "../common/developerList";
     import Directorlist from "../common/directorList";
+
     export default {
         name: "Team",
         components: {Directorlist, Developerlist, Artistlist},
