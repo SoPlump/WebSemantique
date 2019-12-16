@@ -126,9 +126,12 @@ export const getGameByName = (name) => {
                     return new Promise(resolve => resolve({
                         ...game,
                         gamePublishers: publishers.map(publishers => {
+                            const publisherUri = publishers.publisher.value.split('/');
+                            const cutUri = '/studio/'+publisherUri[publisherUri.length - 1];
                             return {
                                 publisherName: publishers.publisherName.value,
-                                publisherUri: publishers.publisher.value
+                                publisherUri: publishers.publisher.value,
+                                cutUri: cutUri
                             }
                         })
                     }))
@@ -153,9 +156,12 @@ export const getGameByName = (name) => {
                     return new Promise(resolve => resolve({
                         ...game,
                         gameDevelopers: developers.map(developers => {
+                            const devUri = developers.developer.value.split('/');
+                            const cutUri = '/studio/'+devUri[devUri.length - 1];
                             return {
                                 developerName: developers.developerName.value,
-                                developerUri: developers.developer.value
+                                developerUri: developers.developer.value,
+                                cutUri: cutUri
                             }
                         })
                     }))
@@ -212,9 +218,12 @@ export const getGameByName = (name) => {
                     return new Promise(resolve => resolve({
                         ...game,
                         gameGenres: genres.map(genres => {
+                            const genreUri = genres.genre.value.split('/');
+                            const cutUri = '/genre/'+genreUri[genreUri.length - 1];
                             return {
                                 genreName: genres.genreName.value,
-                                genreUri: genres.genre.value
+                                genreUri: genres.genre.value,
+                                cutUri: cutUri
                             }
                         })
                     }))
