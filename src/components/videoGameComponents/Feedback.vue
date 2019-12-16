@@ -1,6 +1,5 @@
 <template>
     <div>
-        <div id = 'award'> Award : {{award}}</div>
         <div id = 'ign'> IGN : {{ign}}</div>
         <div id = 'gs'> GS : {{gs}}</div>
         <div id = 'mc'> MC : {{mc}}</div>
