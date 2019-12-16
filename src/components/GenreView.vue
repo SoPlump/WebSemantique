@@ -25,9 +25,9 @@
         components: {GameList},
         data: function () {
             return {
-                genreName: String,
-                abstract: String,
-                games : Array,
+                genreName: "",
+                abstract: "",
+                games : [],
 
             }
         },
