@@ -214,6 +214,7 @@ export const getAllStudiosByName = name => {
 };
 
 export const getSerieByName = (name) => {
+    name = name.replace('(', '\\(').replace(')', '\\)');
     return sparql.query(`
         SELECT ?serie, ?label, ?abstract, ?firstReleaseDate, ?genre, ?genreLabel, ?publisher
         WHERE  {
@@ -228,12 +229,14 @@ export const getSerieByName = (name) => {
         .then(res => {
 
             const serie = res.results.bindings[0];
+            /*eslint-disable no-console*/
+            console.log(serie);
             const cutUri = serie.serie.value.split('/');
             return new Promise(resolve => resolve({
                 abstract: serie.abstract.value,
                 label: serie.label.value,
                 firstReleaseDate: serie.firstReleaseDate.value,
-                serie: cutUri[cutUri.length - 1]
+                serie: cutUri[cutUri.length - 1].replace('(', '\\(').replace(')', '\\)')
             }));
             //return new Promise(resolve => resolve(res));
         })
