@@ -357,6 +357,33 @@ export const getGameByName = (name) => {
                             }))
                         })
                 })
+                .then(game => {
+                    return sparql
+                        .query(`
+                    SELECT ?producerName ?producer WHERE {
+                        ?uri a dbo:VideoGame.
+                        
+                        ?uri dbo:producer ?producer.
+                        
+                        OPTIONAL {?producer rdfs:label ?producerName.}
+                        
+                        FILTER langMatches(lang(?producerName), 'en')
+                        filter(?uri = <${game.uri}>)
+                    }
+                `)
+                        .then(res => {
+                            const producers = res.results.bindings;
+                            return new Promise(resolve => resolve({
+                                ...game,
+                                gameProducers: producers.map(producer => {
+                                    return {
+                                        producerName: producer.producerName.value,
+                                        producerUri: producer.producer.value
+                                    }
+                                })
+                            }))
+                        })
+                })
         })
 };
 
