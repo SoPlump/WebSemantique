@@ -11,7 +11,6 @@
     export default {
         name: "Feedback",
         props: {
-            award: String,
             ign: String,
             gs: String,
             mc: String

@@ -13,6 +13,11 @@
         <artistlist v-bind:artists= gameArtists>
 
         </artistlist>
+
+        <span> Game Composers : </span>
+        <composerlist v-bind:composers=composers>
+
+        </composerlist>
     </div>
 </template>
 
@@ -20,10 +25,11 @@
     import Artistlist from "../common/artistList";
     import Developerlist from "../common/developerList";
     import Directorlist from "../common/directorList";
+    import Composerlist from "../common/composerList";
 
     export default {
         name: "Team",
-        components: {Directorlist, Developerlist, Artistlist},
+        components: {Composerlist, Directorlist, Developerlist, Artistlist},
         props: {
             dev: String,
             director: String,
@@ -31,6 +37,7 @@
             gameArtists: Array,
             developers: Array,
             directors: Array,
+            composers: Array,
         }
 
     }

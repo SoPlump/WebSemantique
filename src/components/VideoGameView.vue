@@ -9,11 +9,11 @@
 
         </FactSheet>
 
-        <Team id = "team" v-bind:developers=developers  v-bind:directors=directors producer="PRODUCER" v-bind:gameArtists=artists>
+        <Team id = "team" v-bind:developers=developers  v-bind:directors=directors producer="PRODUCER" v-bind:gameArtists=artists v-bind:composers=composers>
 
         </Team>
 
-        <Feedback award="ADD AWARD" :ign=ign :gs=gs :mc= mc>
+        <Feedback :ign=ign :gs=gs :mc= mc>
 
         </Feedback>
 
@@ -54,6 +54,7 @@
                 abstract : "",
                 releaseDate : "",
                 artists: [],
+                composers: [],
                 developers: [],
                 directors: [],
                 award: "",
@@ -76,6 +77,7 @@
                 this.abstract = game.abstract;
                 this.releaseDate = game.releaseDate;
                 this.artists = game.gameArtists;
+                this.composers = game.gameComposers;
                 this.developers = game.gameDevelopers;
                 this.directors = game.gameDirectors;
                 this.genre = game.gameGenres;
@@ -83,8 +85,8 @@
                 this.ign = game.gameCritics[0].ignCritic;
                 this.gs = game.gameCritics[0].gspotCritic;
                 this.games_serie = game.otherGamesFromSameSerie;
-                this.games_dev = [];
-                this.games_genre = [];
+                this.games_dev = game.otherGamesFromSameDeveloper;
+                this.games_genre = game.otherGamesFromSameGenre;
 
             });
         }
