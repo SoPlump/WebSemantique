@@ -255,8 +255,8 @@ export const getGameByName = (name) => {
                         })
                     }))
                 }).then( game => {
-                    let cutGameUri = game.uri.split('/');
-                    const gameUri = cutGameUri[cutGameUri.length - 1];
+                    //let cutGameUri = game.uri.split('/');
+                    //const gameUri = cutGameUri[cutGameUri.length - 1];
                     let uriList = "";
 
                     game.gameSeries.forEach( serie => {
@@ -277,7 +277,7 @@ export const getGameByName = (name) => {
                         where {
                         ?game dbo:series ?serie;
                         rdfs:label ?label.
-                        FILTER(?game != dbr:${gameUri})
+                        FILTER(?game != <${game.uri}>)
                         FILTER(?serie in (${uriList}))
                         FILTER langMatches(lang(?label), 'en')
                         }
@@ -299,8 +299,8 @@ export const getGameByName = (name) => {
                             }))
                         })
                 }).then( game => {
-                    let cutGameUri = game.uri.split('/');
-                    const gameUri = cutGameUri[cutGameUri.length - 1];
+                    //let cutGameUri = game.uri.split('/');
+                    //const gameUri = cutGameUri[cutGameUri.length - 1];
                     let uriList = "";
 
                     game.gameGenres.forEach( genre => {
@@ -320,7 +320,7 @@ export const getGameByName = (name) => {
                         where {
                         ?game dbp:genre ?genre;
                         rdfs:label ?label.
-                        FILTER(?game != dbr:${gameUri})
+                        FILTER(?game != <${game.uri}>)
                         FILTER(?genre in (${uriList}))
                         FILTER langMatches(lang(?label), 'en')
                         }
@@ -342,8 +342,8 @@ export const getGameByName = (name) => {
                             }))
                         })
                 }).then( game => {
-                    let cutGameUri = game.uri.split('/');
-                    const gameUri = cutGameUri[cutGameUri.length - 1];
+                    //let cutGameUri = game.uri.split('/');
+                    //const gameUri = cutGameUri[cutGameUri.length - 1];
                     let uriList = "";
 
                     game.gameDevelopers.forEach( dev => {
@@ -363,7 +363,7 @@ export const getGameByName = (name) => {
                         where {
                         ?game dbp:developer ?genre;
                         rdfs:label ?label.
-                        FILTER(?game != dbr:${gameUri})
+                        FILTER(?game != <${game.uri}>)
                         FILTER(?genre in (${uriList}))
                         FILTER langMatches(lang(?label), 'en')
                         }
