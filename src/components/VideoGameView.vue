@@ -5,7 +5,9 @@
 
         </div>
 
-        <img :src="imgSrc"/>
+        <div class="flex mb-10 justify-center">
+            <img :src="imgSrc" />
+        </div>
 
         <FactSheet :name=gameNameClean :date= releaseDate v-bind:genre= genre v-bind:series=series :abstract=abstract>
 
