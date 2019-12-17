@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <meta itemprop="name">
     <meta property="og:title">
-    <link rel="icon" href="/favicons/favicon-0.png">
+    <link id="dynamic-favicon" rel="icon" href="/favicons/favicon-0.png">
     <title>DuckDuckGame</title>
   </head>
   <body>
     <script>
       function changeFavicon(src) {
-        var link = document.createElement('link'),
-                oldLink = document.getElementById('dynamic-favicon');
+        let link = document.createElement('link');
+        let oldLink = document.getElementById('dynamic-favicon');
         link.id = 'dynamic-favicon';
         link.rel = 'shortcut icon';
         link.href = src;
