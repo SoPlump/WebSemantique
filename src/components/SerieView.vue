@@ -38,13 +38,13 @@
         components: {Developerlist, GameList, GenreList},
         data: function () {
             return {
-                serieName: String,
-                genres: Array,
-                developers: Array,
-                abstract: String,
-                firstRelease: String,
-                games: Array,
-                name: String,
+                serieName: "",
+                genres: [],
+                developers: [],
+                abstract: "",
+                firstRelease: "",
+                games: [],
+                name: "",
             }
         },
         created() {
